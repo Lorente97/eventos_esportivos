@@ -1,53 +1,5 @@
 <?php
 include("conexao.php");
-
-if(isset($_GET['excluir']))
-{
-    $id = $_GET['excluir'];
-
-    $sql = "DELETE FROM equipes
-            WHERE id = $id";
-
-    mysqli_query($conexao, $sql);
-}
-
-$nomeEditar = "";
-
-if(isset($_GET['editar']))
-{
-    $idEditar = $_GET['editar'];
-
-    $sql = "SELECT * FROM equipes
-            WHERE id = $idEditar";
-
-    $resultado = mysqli_query($conexao, $sql);
-
-    $dados = mysqli_fetch_assoc($resultado);
-
-    $nomeEditar = $dados['nome'];
-}
-
-if(isset($_POST['atualizar']))
-{
-    $id = $_POST['id'];
-    $nome = $_POST['nome'];
-
-    $sql = "UPDATE equipes
-            SET nome = '$nome'
-            WHERE id = $id";
-
-    mysqli_query($conexao, $sql);
-}
-
-if(isset($_POST['salvar']))
-{
-    $nome = $_POST['nome'];
-
-    $sql = "INSERT INTO equipes(nome)
-            VALUES('$nome')";
-
-    mysqli_query($conexao, $sql);
-}
 ?>
 
 <!DOCTYPE html>
@@ -58,41 +10,13 @@ if(isset($_POST['salvar']))
 </head>
 <body>
 
-<h1>Cadastro de Equipes</h1>
+<h1>Equipes</h1>
 
-<form method="POST">
-
-    <input
-        type="hidden"
-        name="id"
-        value="<?php echo isset($idEditar) ? $idEditar : ''; ?>"
-    >
-
-    Nome da Equipe:
-
-    <input
-        type="text"
-        name="nome"
-        value="<?php echo $nomeEditar; ?>"
-        required
-    >
-
-    <?php
-    if(isset($idEditar))
-    {
-        echo '<button type="submit" name="atualizar">Atualizar</button>';
-    }
-    else
-    {
-        echo '<button type="submit" name="salvar">Salvar</button>';
-    }
-    ?>
-
-</form>
+<a href="nova_equipe.php">
+    Novo Registro
+</a>
 
 <hr>
-
-<h2>Equipes Cadastradas</h2>
 
 <table border="1">
 
@@ -118,13 +42,13 @@ while($linha = mysqli_fetch_assoc($resultado))
 
     echo "<td>";
 
-    echo "<a href='equipes.php?editar=".$linha['id']."'>
-    Editar
-    </a> | ";
+    echo "<a href='alterar_equipe.php?id=".$linha['id']."'>
+            Editar
+          </a> | ";
 
-    echo "<a href='equipes.php?excluir=".$linha['id']."'>
-    Excluir
-    </a>";
+    echo "<a href='consultar_equipe.php?id=".$linha['id']."'>
+            Consultar
+          </a>";
 
     echo "</td>";
 
@@ -135,7 +59,9 @@ while($linha = mysqli_fetch_assoc($resultado))
 
 </table>
 
-<a href='index.php'>Voltar</a>
+<br>
+
+<a href="index.php">Voltar</a>
 
 </body>
 </html>

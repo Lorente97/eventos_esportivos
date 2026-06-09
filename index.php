@@ -1,19 +1,39 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Sistema de Gestão de Eventos Esportivos</title>
-</head>
-<body>
+<?php
+require_once("cabecalho.php");
+?>
 
-    <h1>Sistema de Gestão de Eventos Esportivos</h1>
+<h2>Página Inicial</h2>
 
-    <ul>
-        <li><a href="competicoes.php">Competições</a></li>
-        <li><a href="equipes.php">Equipes</a></li>
-        <li><a href="jogadores.php">Jogadores</a></li>
-        <li><a href="partidas.php">Partidas</a></li>
-    </ul>
+<p>
+    Escolha uma das opções abaixo:
+</p>
 
-</body>
-</html> 
+<ul>
+    <li>
+        <a href="competicoes.php">
+            Competições
+        </a>
+    </li>
+
+    <li>
+        <a href="equipes.php">
+            Equipes
+        </a>
+    </li>
+
+    <li>
+        <a href="jogadores.php">
+            Jogadores
+        </a>
+    </li>
+
+    <li>
+        <a href="partidas.php">
+            Partidas
+        </a>
+    </li>
+</ul>
+
+<?php
+require_once("rodape.php");
+?>
